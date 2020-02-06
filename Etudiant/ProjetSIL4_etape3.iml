@@ -7,11 +7,8 @@
           <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/web/WEB-INF/web.xml" />
         </descriptors>
         <webroots>
-          <root url="file://$MODULE_DIR$/../../ProjetSIL4_etape3(1)/ProjetSIL4_etape3/web" relative="/" />
+          <root url="file://$MODULE_DIR$/web" relative="/" />
         </webroots>
-        <sourceRoots>
-          <root url="file://$MODULE_DIR$/../../ProjetSIL4_etape3(1)/ProjetSIL4_etape3/src" />
-        </sourceRoots>
       </configuration>
     </facet>
     <facet type="jpa" name="JPA">
