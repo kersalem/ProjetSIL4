@@ -12,6 +12,8 @@
 
         <!-- Classes persistées - liées à tes tables de la base de données -->
         <class>projet.data.Etudiant</class>
+        <class>projet.data.Groupe</class>
+        <class>projet.data.Module</class>
 
         <!-- Propriétés de l'unité de persistence -->
         <properties>
@@ -77,7 +79,7 @@
 
         <!-- Classes persistées - liées à tes tables de la base de données -->
         <class>projet.data.Etudiant</class>
-        <!--  <class>projet.data.Groupe</class>-->
+        <class>projet.data.Groupe</class>
          <class>projet.data.Module</class>
 
          <!-- Propriétés de l'unité de persistence -->
