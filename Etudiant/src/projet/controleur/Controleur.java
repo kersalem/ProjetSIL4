@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import projet.data.Etudiant;
 import projet.data.EtudiantDAO;
 import projet.data.GestionFactory;
+import projet.data.GroupeDAO;
 
 @SuppressWarnings("serial")
 public class Controleur extends HttpServlet {
@@ -46,7 +47,8 @@ public class Controleur extends HttpServlet {
 		urlConsultationAbsences = getServletConfig().getInitParameter("urlConsultationAbsences");
 		urlConsultationNotes = getServletConfig().getInitParameter("urlConsultationNotes");
 		urlEtudiantEdition = getServletConfig().getInitParameter("urlEtudiantEdition");
-		EtudiantDAO.create("Marie", "Kersalé");
+		// EtudiantDAO.create("Marie", "Kersalé");
+		// GroupeDAO.create("SIMO");
 	}
 
 	@Override
@@ -58,8 +60,41 @@ public class Controleur extends HttpServlet {
 	// POST
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
+		String action = request.getPathInfo();
+		if (action == null) {
+			action = "/accueil";
+		}
 		// on passe la main au GET
-		doGet(request, response);
+		if (action.equals("/etudiantEdition")) {
+			doEtudiantEditionPost(request, response);
+
+		}
+
+		else {
+			// Autres cas
+			doGet(request, response);
+		}
+	}
+
+	private void doEtudiantEditionPost(HttpServletRequest request, HttpServletResponse response) {
+
+		Collection<Etudiant> etudiants = EtudiantDAO.getAll();
+
+		for(Etudiant etudiant : etudiants) {
+			String noteEnString = request.getParameter(etudiant.getId().toString());
+			int noteEnNumber = Integer.parseInt(noteEnString);
+			etudiant.setMoyenneGenerale(noteEnNumber);
+			EtudiantDAO.update(etudiant);
+		}
+		try {
+			doEtudiantEdition(request, response);
+
+		} catch (ServletException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	// GET
@@ -71,7 +106,8 @@ public class Controleur extends HttpServlet {
 		if (action == null) {
 			action = "/accueil";
 		}
-
+		System.out.println("DOGET");
+		System.out.println(action);
 		// Exécution action
 		if (action.equals("/accueil")) {
 			doAcceuil(request, response);
@@ -103,8 +139,12 @@ public class Controleur extends HttpServlet {
 	private void doEtudiantEdition(HttpServletRequest request,
 								   HttpServletResponse response) throws ServletException, IOException {
 
-		Collection<Etudiant> etudiantEdition = EtudiantDAO.getAll();
+		if(request.getMethod().equalsIgnoreCase("post")) {
+			System.out.println("LAAAAAAAAAAAA");
 
+		}
+		Collection<Etudiant> etudiantEdition = EtudiantDAO.getAll();
+		System.out.println("ICIIIIIIIIIIIIIIIIII");
 		request.setAttribute("etudiantEdition", etudiantEdition);
 
 		request.setAttribute("content", urlEtudiantEdition);

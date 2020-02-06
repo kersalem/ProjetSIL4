@@ -30,8 +30,7 @@
 <%--        </div>--%>
         <div>
             <label for="MoyenneGenerale">Moyenne Generale</label>
-            <input type="text" id="MoyenneGenerale" name="MoyenneGenerale" value="<%=etudiant.getMoyenneGenerale()%>">
-            <input type="hidden" id="etudiantId" name="etudiantId" value="<%=etudiant.getId()%>" >
+            <input type="text" id="MoyenneGenerale" name="<%=etudiant.getId()%>" value="<%=etudiant.getMoyenneGenerale()%>">
         </div>
         <%}%>
         <button type="submit" class="btn btn-primary">Enregistrer</button>
