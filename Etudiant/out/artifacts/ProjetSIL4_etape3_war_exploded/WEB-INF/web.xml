@@ -53,6 +53,10 @@
             <param-name>urlConsultationNotes</param-name>
             <param-value>/WEB-INF/JSP/notes/consultationNotes.jsp</param-value>
         </init-param>
+        <init-param>
+            <param-name>urlEtudiantEdition</param-name>
+            <param-value>/WEB-INF/JSP/etudiantEdition.jsp</param-value>
+        </init-param>
     </servlet>
 
     <!-- Mapping URL/Servlet -->
