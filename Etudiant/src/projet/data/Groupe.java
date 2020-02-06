@@ -19,12 +19,12 @@ public class Groupe implements Serializable {
 	@Column(unique=true, nullable=false)
 	private String nom;
 	
-//	@OneToMany(mappedBy="groupe", fetch= FetchType.LAZY)	// LAZY = fetch when needed, EAGER = fetch immediately
-	//private List<Etudiant> etudiants;
+	@OneToMany(mappedBy= "groupe", fetch= FetchType.LAZY)	// LAZY = fetch when needed, EAGER = fetch immediately
+	private List<Etudiant> etudiants;
 
-	//@ManyToMany(mappedBy = "groupes", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	//private List<Module> modules = new ArrayList<>();
-	
+/*	@ManyToMany(mappedBy = "groupes", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	private List<Module> modules = new ArrayList<>();
+	*/
 	private static final long serialVersionUID = 1L;
 
 	public Groupe() {
