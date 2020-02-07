@@ -17,6 +17,7 @@
 
 
 <div>
+    <h3>Editer notes</h3>
     <form method="post" >
     <%
         for (Etudiant etudiant : etudiantEdition) {
@@ -37,4 +38,5 @@
     </form>
 </div>
 
-<blockquote>je suis etudiantEdition.jsp</blockquote>
+<%--
+<blockquote>je suis etudiantEdition.jsp</blockquote>--%>

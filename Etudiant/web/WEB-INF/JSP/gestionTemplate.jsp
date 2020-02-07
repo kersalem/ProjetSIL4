@@ -8,14 +8,26 @@
 <head>
 <title><%= application.getInitParameter("title")%></title>
 </head>
+<style>
+    body {
+        margin: auto;
+        width: 960px;
+        background-color: darkkhaki;
+    }
+    .editEtudiant {
+        background-color: darkorange;
+    }
+</style>
 <body>
 
     <a href="<%= application.getContextPath()%>/do/accueil">Accueil</a>
     <a href="<%= application.getContextPath()%>/do/listeEtudiants">Les étudiants</a>
     <a href="<%= application.getContextPath()%>/do/consultationNotes">Consulter les notes</a>
     <a href="<%= application.getContextPath()%>/do/etudiantEdition">Editer notes</a>
-
-    <%--<a href="<%= application.getContextPath()%>/do/consultationAbsences">Consulter les absences</a>--%>
+    <a href="<%= application.getContextPath()%>/do/consultationAbsences">Consulter absences</a>
+<%--
+    <a href="<%= application.getContextPath()%>/do/abscencesEdition">Editer abscences</a>
+--%>
 
     <jsp:include page="<%=content%>" />
 
