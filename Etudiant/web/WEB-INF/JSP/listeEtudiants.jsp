@@ -26,7 +26,6 @@
 		%>
 			<tr>
 				<td><a href="<%= application.getContextPath()%>/do/etudiant?id=<%=etudiant.getId()%>"><%=etudiant.getPrenom()%> <%=etudiant.getNom()%></a></td>
-				<%--<td><%=etudiant.getGroupe()%></td>--%>
 				<td><a href="<%= application.getContextPath()%>/do/etudiantEdition?id=<%=etudiant.getId()%>"></a><%=etudiant.getGroupe().getNom()%></td>
 			</tr>
 		<%

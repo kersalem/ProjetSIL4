@@ -11,7 +11,10 @@
 <h3>Fiche de <%=etudiant.getPrenom()%> <%=etudiant.getNom()%></h3>
 
 <table border="1">
-
+	<tr>
+		<td>Groupe</td>
+		<td><%=etudiant.getGroupe().getNom()%></td>
+	</tr>
 	<tr>
 		<td>Moyenne Generale</td>
 		<td><%=note%></td>
