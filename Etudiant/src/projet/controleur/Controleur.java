@@ -18,10 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import projet.data.Etudiant;
-import projet.data.EtudiantDAO;
-import projet.data.GestionFactory;
-import projet.data.GroupeDAO;
+import projet.data.*;
 
 @SuppressWarnings("serial")
 public class Controleur extends HttpServlet {
@@ -116,9 +113,9 @@ public class Controleur extends HttpServlet {
 		} else if (action.equals("/etudiant")) {
 			doEtudiant(request, response);
 		} else if (action.equals("/consultationAbsences")) {
-			//doConsultationAbsences(request, response);
+			doConsultationAbsences(request, response);
 		} else if (action.equals("/consultationNotes")) {
-			//doConsultationNotes(request, response);
+			doConsultationNotes(request, response);
 		} else if (action.equals("/etudiantEdition")) {
 			doEtudiantEdition(request, response);
 		}else {
@@ -139,15 +136,46 @@ public class Controleur extends HttpServlet {
 	private void doEtudiantEdition(HttpServletRequest request,
 								   HttpServletResponse response) throws ServletException, IOException {
 
-		if(request.getMethod().equalsIgnoreCase("post")) {
+		/*if(request.getMethod().equalsIgnoreCase("post")) {
 			System.out.println("LAAAAAAAAAAAA");
 
-		}
+		}*/
 		Collection<Etudiant> etudiantEdition = EtudiantDAO.getAll();
-		System.out.println("ICIIIIIIIIIIIIIIIIII");
 		request.setAttribute("etudiantEdition", etudiantEdition);
 
 		request.setAttribute("content", urlEtudiantEdition);
+		loadJSP(urlGestionTemplate, request, response);
+	}
+
+	// /////////////////////// CONSULTATION NOTES
+
+	private void doConsultationNotes(HttpServletRequest request,
+									 HttpServletResponse response) throws ServletException, IOException {
+
+		// Récupérer les étudiants en fonction du filtre groupe
+		Collection<Etudiant> listeNotesEtudiants = EtudiantDAO.getAll();
+
+		// Récupérer l'association Etudiant/Note pour affichage
+		//Map<Etudiant, Integer> listeNotesEtudiants = EtudiantDAO.getNoteByEtudiants(listeEtudiants);
+
+		request.setAttribute("listeNotesEtudiants", listeNotesEtudiants);
+
+		request.setAttribute("content", urlConsultationNotes);
+		loadJSP(urlGestionTemplate, request, response);
+	}
+
+	/////////////////////// CONSULTATION ABSENCES
+
+	private void doConsultationAbsences(HttpServletRequest request,
+										HttpServletResponse response) throws ServletException, IOException {
+
+		// Récupérer les étudiants
+		Collection<Etudiant> listeAbsencesEtudiants = EtudiantDAO.getAll();
+		System.out.println("ICIIIIIIIIIIIIIIIIII doConsultationAbsences");
+
+		request.setAttribute("listeAbsencesEtudiants", listeAbsencesEtudiants);
+
+		request.setAttribute("content", urlConsultationAbsences);
 		loadJSP(urlGestionTemplate, request, response);
 	}
 
@@ -184,43 +212,6 @@ public class Controleur extends HttpServlet {
 		request.setAttribute("content", urlEtudiant);
 		loadJSP(urlGestionTemplate, request, response);
 	}
-
-	// /////////////////////// CONSULTATION NOTES
-
-/*	private void doConsultationNotes(HttpServletRequest request,
-	HttpServletResponse response) throws ServletException, IOException {
-
-	// Récupérer les étudiants en fonction du filtre groupe
-	Collection<Etudiant> listeEtudiants = EtudiantDAO.getAll();
-
-	// Récupérer l'association Etudiant/Note pour affichage
-		Map<Etudiant, Integer> listeNotesEtudiants = EtudiantDAO.getNoteByEtudiants(listeEtudiants);
-
-		request.setAttribute("listeNotesEtudiants", listeNotesEtudiants);
-
-		request.setAttribute("content", urlConsultationNotes);
-		loadJSP(urlGestionTemplate, request, response);
-	}*/
-
- /////////////////////// CONSULTATION ABSENCES
-
-/*	private void doConsultationAbsences(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-
-		// Récupérer les étudiants
-		Collection<Etudiant> listeEtudiants = EtudiantDAO.getAll();
-
-		// Récupérer l'association Etudiant/Note pour affichage
-		Map<Etudiant, Integer> listeAbsencesEtudiants = EtudiantDAO.getAbsencesByEtudiants(listeEtudiants);
-
-
-		request.setAttribute("listeAbsencesEtudiants", listeAbsencesEtudiants);
-
-		request.setAttribute("content", urlConsultationAbsences);
-		loadJSP(urlGestionTemplate, request, response);
-	}
-	*/
-
 
 	/**
 	 * Charge la JSP indiquée en paramètre
