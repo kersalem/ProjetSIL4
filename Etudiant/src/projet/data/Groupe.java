@@ -1,9 +1,12 @@
 package projet.data;
 
-
-import javax.persistence.*;
-import java.io.Serializable;
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import java.io.Serializable;
+import javax.persistence.*;
 
 /**
  * Entity implementation class for Entity: Groupe
@@ -29,8 +32,17 @@ public class Groupe implements Serializable {
 
 	public Groupe() {
 		super();
+	}
+	public Groupe(Integer id, String nom,  List<Etudiant> etudiants) {
+		super();
+
+		this.id = id;
+		this.nom = nom;
+		this.etudiants = etudiants;
 	}   
 	public Integer getId() {
+		System.out.println("****************** getId");
+		System.out.println("****************** this.Id" + this.id);
 		return this.id;
 	}
 
@@ -46,11 +58,14 @@ public class Groupe implements Serializable {
 		this.nom = nom.toUpperCase();
 	}
 	
-/*
+
 	public List<Etudiant> getEtudiants() {
+		System.out.println("****************** getEtudiants");
+		System.out.println("****************** this.etudiants" + this.etudiants);
+
 		return this.etudiants;
 	}
-*/
+
 
 
 	/*public List<Module> getModules() {

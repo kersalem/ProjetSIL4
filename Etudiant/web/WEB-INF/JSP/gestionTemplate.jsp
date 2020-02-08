@@ -28,7 +28,7 @@
     <a href="<%= application.getContextPath()%>/do/etudiantEdition">Editer notes</a>
     <a href="<%= application.getContextPath()%>/do/consultationAbsences">Consulter absences</a>
     <a href="<%= application.getContextPath()%>/do/absencesEdition">Editer absences</a>
-    <a href="<%= application.getContextPath()%>/do/consultationGroupes">Consultatio groupes</a>
+    <a href="<%= application.getContextPath()%>/do/consultationGroupes">Consultation groupes</a>
 <%--
     <a href="<%= application.getContextPath()%>/do/abscencesEdition">Editer abscences</a>
 --%>

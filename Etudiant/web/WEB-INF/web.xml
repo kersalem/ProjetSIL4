@@ -65,6 +65,10 @@
             <param-name>urlConsultationGroupes</param-name>
             <param-value>/WEB-INF/JSP/groupes/consultationGroupes.jsp</param-value>
         </init-param>
+        <init-param>
+            <param-name>urlFicheGroupes</param-name>
+            <param-value>/WEB-INF/JSP/groupes/ficheGroupes.jsp</param-value>
+        </init-param>
     </servlet>
 
     <!-- Mapping URL/Servlet -->

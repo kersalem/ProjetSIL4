@@ -9,6 +9,7 @@ package projet.controleur;
  */
 import java.io.IOException;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
@@ -33,6 +34,7 @@ public class Controleur extends HttpServlet {
 	private String urlEtudiantEdition;
 	private String urlAbsencesEdition;
 	private String urlConsultationGroupes;
+	private String urlFicheGroupes;
 
 
 	// INIT
@@ -48,6 +50,7 @@ public class Controleur extends HttpServlet {
 		urlEtudiantEdition = getServletConfig().getInitParameter("urlEtudiantEdition");
 		urlAbsencesEdition = getServletConfig().getInitParameter("urlAbsencesEdition");
 		urlConsultationGroupes = getServletConfig().getInitParameter("urlConsultationGroupes");
+		urlFicheGroupes = getServletConfig().getInitParameter("urlFicheGroupes");
 		// EtudiantDAO.create("Marie", "Kersalé");
 		// GroupeDAO.create("SIMO");
 	}
@@ -148,6 +151,10 @@ public class Controleur extends HttpServlet {
 			doAbsencesEdition(request, response);
 		} else if (action.equals("/consultationGroupes")) {
 			doConsultationGroupes(request, response);
+		}else if (action.equals("/ficheGroupes")) {
+			doFicheGroupes(request, response);
+		} else if (action.equals("/ajouterAbsences")) {
+			doAddAbsences(request, response);
 		}else {
 			// Autres cas
 			doAcceuil(request, response);
@@ -186,12 +193,10 @@ public class Controleur extends HttpServlet {
 
 		// Récupérer les étudiants
 		Collection<Etudiant> absencesEdition = EtudiantDAO.getAll();
-		System.out.println("ICIIIIIIIIIIIIIIIIII editer absence editer");
 
-		if(request.getMethod().equalsIgnoreCase("post")) {
+		/* if(request.getMethod().equalsIgnoreCase("post")) {
 			System.out.println("LAAAAAAAAAAAA");
-
-		}
+		}*/
 
 		request.setAttribute("absencesEdition", absencesEdition);
 
@@ -199,6 +204,27 @@ public class Controleur extends HttpServlet {
 		loadJSP(urlGestionTemplate, request, response);
 	}
 
+
+	private void doAddAbsences(HttpServletRequest request,
+								   HttpServletResponse response) throws ServletException, IOException {
+
+		int idEtudiant = Integer.parseInt(request.getParameter("id"));
+
+		Etudiant etudiant = EtudiantDAO.retrieveById(idEtudiant);
+		System.out.println("addddddddddddddddddddddddddddddddd/////////");
+
+		etudiant.ajouterAbsence();
+
+		EtudiantDAO.update(etudiant);
+
+/*
+		request.setAttribute("ajouterAbsences", ajouterAbsences);
+		loadJSP(urlGestionTemplate, request, response);
+*/
+
+		response.sendRedirect((request.getContextPath() + "/do/absencesEdition"));
+
+	}
 	// /////////////////////// CONSULTATION NOTES
 
 	private void doConsultationNotes(HttpServletRequest request,
@@ -220,7 +246,6 @@ public class Controleur extends HttpServlet {
 
 		// Récupérer les étudiants
 		Collection<Etudiant> listeAbsencesEtudiants = EtudiantDAO.getAll();
-		System.out.println("ICIIIIIIIIIIIIIIIIII doConsultationAbsences");
 
 		request.setAttribute("listeAbsencesEtudiants", listeAbsencesEtudiants);
 
@@ -248,6 +273,28 @@ public class Controleur extends HttpServlet {
 		loadJSP(urlGestionTemplate, request, response);
 	}
 
+	///////////////////////// Détails groupe
+
+	private void doFicheGroupes(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+
+/*		int idGroupe = Integer.parseInt(request.getParameter("id"));
+		Groupe groupeTest = GroupeDAO.retrieveById(idGroupe);
+		request.setAttribute("groupe", groupeTest);*/
+
+		Collection<Groupe> ficheGroupes = GroupeDAO.getAll();
+
+/*		List<Etudiant> etudiants = groupe.getEtudiants();
+		System.out.println("****************** etudiants" + etudiants);
+
+		request.setAttribute("etudiants", etudiants);*/
+
+		request.setAttribute("ficheGroupes", ficheGroupes);
+
+		request.setAttribute("content", urlFicheGroupes);
+		loadJSP(urlGestionTemplate, request, response);
+	}
 	/////////////////////// Liste des étudiants
 	private void doListeEtudiants(HttpServletRequest request,
 								  HttpServletResponse response) throws ServletException, IOException {
@@ -266,6 +313,7 @@ public class Controleur extends HttpServlet {
 	private void doConsultationGroupes(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Collection<Groupe> listeGroupes = GroupeDAO.getAll();
+		System.out.println("****************** consult groupe");
 
 		request.setAttribute("listeGroupes", listeGroupes);
 

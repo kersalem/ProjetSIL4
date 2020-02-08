@@ -72,12 +72,17 @@ public class Etudiant implements Serializable {
 		this.nbAbsences = nbAbsences;
 	}
 
+
 	public Groupe getGroupe() {
 		return groupe;
 	}
 
 	public void setGroupe(Groupe groupe) {
 		this.groupe = groupe;
+	}
+
+	public void ajouterAbsence() {
+		this.nbAbsences++;
 	}
 
 	public int getMoyenneGenerale() {

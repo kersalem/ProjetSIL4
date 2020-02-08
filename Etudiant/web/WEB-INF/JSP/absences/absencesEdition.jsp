@@ -19,7 +19,8 @@
        <% System.out.println( "je suis dans jsp edition absences"); %>
        <div class="form-group">
             <label for="nbAbsences">Absences</label>
-            <input class="form-control" type="text" id="nbAbsences" name="<%=etudiant.getId()%>" value="<%=etudiant.getNbAbsences()%>">
+           <input class="form-control" type="text" id="nbAbsences" name="<%=etudiant.getId()%>" value="<%=etudiant.getNbAbsences()%>">
+           <a class="btn btn-secondary" href="<%= application.getContextPath()%>/do/ajouterAbsences?id=<%=etudiant.getId()%>"> + </a>
        </div>
         <%}%>
         <button type="submit" class="btn btn-primary">Enregistrer</button>
