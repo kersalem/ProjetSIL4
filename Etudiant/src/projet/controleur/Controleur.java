@@ -155,6 +155,8 @@ public class Controleur extends HttpServlet {
 			doFicheGroupes(request, response);
 		} else if (action.equals("/ajouterAbsences")) {
 			doAddAbsences(request, response);
+		}else if (action.equals("/enleverAbsences")) {
+			doEnleverAbsences(request, response);
 		}else {
 			// Autres cas
 			doAcceuil(request, response);
@@ -194,10 +196,6 @@ public class Controleur extends HttpServlet {
 		// Récupérer les étudiants
 		Collection<Etudiant> absencesEdition = EtudiantDAO.getAll();
 
-		/* if(request.getMethod().equalsIgnoreCase("post")) {
-			System.out.println("LAAAAAAAAAAAA");
-		}*/
-
 		request.setAttribute("absencesEdition", absencesEdition);
 
 		request.setAttribute("content", urlAbsencesEdition);
@@ -211,16 +209,26 @@ public class Controleur extends HttpServlet {
 		int idEtudiant = Integer.parseInt(request.getParameter("id"));
 
 		Etudiant etudiant = EtudiantDAO.retrieveById(idEtudiant);
-		System.out.println("addddddddddddddddddddddddddddddddd/////////");
 
 		etudiant.ajouterAbsence();
 
 		EtudiantDAO.update(etudiant);
 
-/*
-		request.setAttribute("ajouterAbsences", ajouterAbsences);
-		loadJSP(urlGestionTemplate, request, response);
-*/
+		response.sendRedirect((request.getContextPath() + "/do/absencesEdition"));
+
+	}
+
+	private void doEnleverAbsences(HttpServletRequest request,
+							   HttpServletResponse response) throws ServletException, IOException {
+
+		int idEtudiant = Integer.parseInt(request.getParameter("id"));
+
+		Etudiant etudiant = EtudiantDAO.retrieveById(idEtudiant);
+		System.out.println("addddddddddddddddddddddddddddddddd/////////");
+
+		etudiant.enleverAbsence();
+
+		EtudiantDAO.update(etudiant);
 
 		response.sendRedirect((request.getContextPath() + "/do/absencesEdition"));
 

@@ -85,6 +85,11 @@ public class Etudiant implements Serializable {
 		this.nbAbsences++;
 	}
 
+	public void enleverAbsence() {
+		if(nbAbsences > 0) {
+			this.nbAbsences--;
+		}
+	}
 	public int getMoyenneGenerale() {
 		return moyenneGenerale;
 	}
