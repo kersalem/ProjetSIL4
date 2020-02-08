@@ -28,6 +28,9 @@
 		<!-- afficher notes  -->
 	<table border="1">
 		<%
+
+			int moyenneGenerale = 0;
+			int nbEtudiant = 0;
 			for (Etudiant etudiant : listeNotesEtudiants) {
 		%>
 			<tr>
@@ -37,6 +40,16 @@
 				<td for="MoyenneGenerale">Moyenne Generale</td>
 				<td type="text" id="MoyenneGenerale"><%=etudiant.getMoyenneGenerale()%></td>
 			</tr>
-	<% }%>
+		<%
+			nbEtudiant++;
+			moyenneGenerale += etudiant.getMoyenneGenerale();
+		%>
+		<%--<% System.out.println( "moyenneGenerale==============" + moyenneGenerale); %>
+		<% System.out.println( "nbEtudiant///////////////////"+ nbEtudiant); %>--%>
+		<% }%>
 	</table>
+	<%
+		moyenneGenerale = moyenneGenerale / nbEtudiant;
+	%>
+	<div>Moyenne générale : <%=moyenneGenerale%></div>
 </div>
