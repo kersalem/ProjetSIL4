@@ -18,20 +18,17 @@
 
 <div>
     <h3>Editer notes</h3>
-    <form method="post" >
+    <form method="post" class="col-sm form-group">
     <%
         for (Etudiant etudiant : etudiantEdition) {
     %>
 <hr>
-        <div>
+        <div class="form-group">
             <p> <%=etudiant.getPrenom() + " " + etudiant.getNom()%></p>
         </div>
-<%--        <div>--%>
-<%--            <p><%=etudiant.getNbAbsences()%></p>--%>
-<%--        </div>--%>
-        <div>
+        <div class="form-group">
             <label for="MoyenneGenerale">Moyenne Generale</label>
-            <input type="text" id="MoyenneGenerale" name="<%=etudiant.getId()%>" value="<%=etudiant.getMoyenneGenerale()%>">
+            <input class="form-control" type="text" id="MoyenneGenerale" name="<%=etudiant.getId()%>" value="<%=etudiant.getMoyenneGenerale()%>">
         </div>
         <%}%>
         <button type="submit" class="btn btn-primary">Enregistrer</button>

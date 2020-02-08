@@ -1,5 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%-- IMPORT --%>
 <%@ page import="java.util.*"%>
@@ -7,50 +6,41 @@
 <%@ page import="projet.data.*"%>
 
 <%-- USEBEAN --%>
+<%--
 <jsp:useBean id="listeNotesEtudiants" type="java.util.Map<projet.data.Etudiant,java.lang.Integer>" scope="request"/>
+--%>
+<jsp:useBean id="listeNotesEtudiants" type="java.util.Collection<projet.data.Etudiant>" scope="request"/>
 
 
-<!--% ou en JAVA
-Map<Etudiant,Integer> listeNotesEtudiants = (Map<Etudiant,Integer>)request.getAttribute("listeNotesEtudiants");
-%-->
+	<!--% ou en JAVA
+	Map<Etudiant,Integer> listeNotesEtudiants = (Map<Etudiant,Integer>)request.getAttribute("listeNotesEtudiants");
+	%-->
 
 <div style="background-color:#D8F6CE">
+	<!-- AFFICHAGE d'un titre  -->
+	<h3>Consultations notes</h3>
 
-<!-- AFFICHAGE d'un titre  -->
-<h3>Moyennes générales</h3>
+		<!-- AFFICHAGE des notes des étudiants  -->
+		<%--
+			<% if (listeNotesEtudiants.size() != 0) {%>
+		--%>
 
-<!-- AFFICHAGE des notes des étudiants  -->
-<% if (listeNotesEtudiants.size() != 0) {%>
+		<!-- afficher notes  -->
+	<table border="1">
 
-<!-- tableau de notes  -->
-<table border="1">
+		<%
+			for (Etudiant etudiant : listeNotesEtudiants) {
+		%>
+			<tr>
+				<td> <%=etudiant.getPrenom() + " " + etudiant.getNom()%></td>
+			</tr>
+			<tr>
+				<td for="MoyenneGenerale">Moyenne Generale</td>
+				<td type="text" id="MoyenneGenerale"><%=etudiant.getMoyenneGenerale()%></td>
+			</tr>
+	<% }%>
+	</table>
 
-<%
-int sommeMoyenneGenerale = 0;
-for (Map.Entry<Etudiant, Integer> entry : listeNotesEtudiants.entrySet()) {
-	Etudiant etudiant = entry.getKey();
-	Integer note = entry.getValue();
-%>
-	<tr>
-		<td><a href="<%= application.getContextPath()%>/do/etudiant?id=<%=etudiant.getId()%>"><%=etudiant.getPrenom()%> <%=etudiant.getNom()%></a></td>
-		<td><%=etudiant.getGroupe()%></td>
-		<td><%=note%></td>
-	</tr>
-<%
-
-	// Calcul de la somme totale des notes pour calcul de la moyenne
-	sommeMoyenneGenerale = sommeMoyenneGenerale + note;
-}
-%>
-</table>
-
-<p>Moyenne des étudiants : <%= sommeMoyenneGenerale/listeNotesEtudiants.size()%></p>
-
-<% } else {%>
-
-	<p>Aucun étudiant</p>
-<%}%>
-
-<blockquote>je suis consultationNotes.jsp</blockquote>
 
 </div>
+	<blockquote>je suis consultationNotes.jsp</blockquote>

@@ -50,6 +50,10 @@
             <param-value>/WEB-INF/JSP/absences/consultationAbsences.jsp</param-value>
         </init-param>
         <init-param>
+            <param-name>urlAbsencesEdition</param-name>
+            <param-value>/WEB-INF/JSP/absences/absencesEdition.jsp</param-value>
+        </init-param>
+        <init-param>
             <param-name>urlConsultationNotes</param-name>
             <param-value>/WEB-INF/JSP/notes/consultationNotes.jsp</param-value>
         </init-param>
