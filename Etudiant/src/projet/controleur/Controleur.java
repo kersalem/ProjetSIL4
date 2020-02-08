@@ -105,7 +105,7 @@ public class Controleur extends HttpServlet {
 		for(Etudiant etudiant : etudiants) {
 			String absencesEnString = request.getParameter(etudiant.getId().toString());
 			int absencesEnNumber = Integer.parseInt(absencesEnString);
-			etudiant.setMoyenneGenerale(absencesEnNumber);
+			etudiant.setNbAbsences(absencesEnNumber);
 			EtudiantDAO.update(etudiant);
 		}
 		try {
