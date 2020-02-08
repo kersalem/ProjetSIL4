@@ -27,7 +27,6 @@
 
 		<!-- afficher notes  -->
 	<table border="1">
-
 		<%
 			for (Etudiant etudiant : listeNotesEtudiants) {
 		%>
@@ -40,7 +39,4 @@
 			</tr>
 	<% }%>
 	</table>
-
-
 </div>
-	<blockquote>je suis consultationNotes.jsp</blockquote>

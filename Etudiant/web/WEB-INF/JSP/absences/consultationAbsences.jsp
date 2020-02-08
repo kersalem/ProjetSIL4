@@ -14,17 +14,21 @@
 
         <!-- tableau de notes  -->
         <table border="1">
-        <%
-            for (Etudiant etudiant : listeAbsencesEtudiants) {
-        %>
-            <tr>
-                <td> <%=etudiant.getPrenom() + " " + etudiant.getNom()%></td>
-            </tr>
-            <tr>
-               <td>Nombre absences</td>
-               <td><%=etudiant.getNbAbsences()%></td>
-            </tr>
-        <%}%>
+            <%
+                int totalAbsences = 0;
+                for (Etudiant etudiant : listeAbsencesEtudiants) {
+            %>
+                <tr>
+                    <td><%=etudiant.getPrenom() + " " + etudiant.getNom()%></td>
+                </tr>
+                <tr>
+                   <td>Nombre absences</td>
+                   <td><%=etudiant.getNbAbsences()%></td>
+                </tr>
+                <%
+                    totalAbsences += etudiant.getNbAbsences();
+                %>
+            <%}%>
         </table>
+        <div>Total de <%=totalAbsences%> absences</div>
     </div>
-<blockquote>je suis constulationAbsences.jsp</blockquote>

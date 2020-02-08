@@ -19,21 +19,18 @@
 <div>
     <h3>Editer notes</h3>
     <form method="post" class="col-sm form-group">
-    <%
-        for (Etudiant etudiant : etudiantEdition) {
-    %>
-<hr>
-        <div class="form-group">
-            <p> <%=etudiant.getPrenom() + " " + etudiant.getNom()%></p>
-        </div>
-        <div class="form-group">
-            <label for="MoyenneGenerale">Moyenne Generale</label>
-            <input class="form-control" type="text" id="MoyenneGenerale" name="<%=etudiant.getId()%>" value="<%=etudiant.getMoyenneGenerale()%>">
-        </div>
+        <%
+            for (Etudiant etudiant : etudiantEdition) {
+        %>
+            <hr>
+            <div class="form-group">
+                <p> <%=etudiant.getPrenom() + " " + etudiant.getNom()%></p>
+            </div>
+            <div class="form-group">
+                <label for="MoyenneGenerale">Moyenne Generale</label>
+                <input class="form-control" type="text" id="MoyenneGenerale" name="<%=etudiant.getId()%>" value="<%=etudiant.getMoyenneGenerale()%>">
+            </div>
         <%}%>
         <button type="submit" class="btn btn-primary">Enregistrer</button>
     </form>
 </div>
-
-<%--
-<blockquote>je suis etudiantEdition.jsp</blockquote>--%>

@@ -8,23 +8,20 @@
 
 <div style="background-color:#D8F6CE">
 
-<h3>Fiche de <%=etudiant.getPrenom()%> <%=etudiant.getNom()%></h3>
+	<h3>Fiche de <%=etudiant.getPrenom()%> <%=etudiant.getNom()%></h3>
 
-<table border="1">
-	<tr>
-		<td>Groupe</td>
-		<td><%=etudiant.getGroupe().getNom()%></td>
-	</tr>
-	<tr>
-		<td>Moyenne Generale</td>
-		<td><%=note%></td>
-	</tr>
-	<tr>
-		<td>Absences</td>
-		<td><%=nbAbsences%></td>
-	</tr>
-</table>
-
-<blockquote>je suis ficheEtudiant.jsp</blockquote>
-
+	<table border="1">
+		<tr>
+			<td>Groupe</td>
+			<td><%=etudiant.getGroupe().getNom()%></td>
+		</tr>
+		<tr>
+			<td>Moyenne Generale</td>
+			<td><%=note%></td>
+		</tr>
+		<tr>
+			<td>Absences</td>
+			<td><%=nbAbsences%></td>
+		</tr>
+	</table>
 </div>

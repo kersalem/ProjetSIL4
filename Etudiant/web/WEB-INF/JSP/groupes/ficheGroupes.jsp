@@ -33,4 +33,3 @@
         }
     %>
 </div>
-<blockquote>je suisfiche Groupe.jsp</blockquote>
