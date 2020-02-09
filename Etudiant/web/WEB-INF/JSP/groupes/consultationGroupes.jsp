@@ -21,7 +21,7 @@
                     for (Groupe groupe : listeGroupes) {
                 %>
                 <tr>
-                    <td><a href="<%= application.getContextPath()%>/do/ficheGroupes?id=<%=groupe.getId()%>"><%=groupe.getNom()%></a></td>
+                    <td><a class="nav-item nav-link text-white" href="<%= application.getContextPath()%>/do/ficheGroupes?id=<%=groupe.getId()%>"><%=groupe.getNom()%></a></td>
                 </tr>
                 <%}%>
             </table>

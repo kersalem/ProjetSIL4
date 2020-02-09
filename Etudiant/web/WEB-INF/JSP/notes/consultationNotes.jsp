@@ -31,7 +31,7 @@
 				%>
 					<tr>
 						<td> <%=etudiant.getPrenom() + " " + etudiant.getNom()%></td>
-						<td type="text" id="MoyenneGenerale"><%=etudiant.getMoyenneGenerale()%></td>
+						<td type="text" id="MoyenneGenerale"><%=etudiant.getMoyenneGenerale()%> /20</td>
 					</tr>
 				<%
 					nbEtudiant++;
@@ -42,7 +42,7 @@
 			<%
 				moyenneGenerale = moyenneGenerale / nbEtudiant;
 			%>
-			<div>Moyenne générale : <%=moyenneGenerale%></div>
+			<div>Moyenne générale : <%=moyenneGenerale%> /20</div>
 		</div>
 	</div>
 </div>

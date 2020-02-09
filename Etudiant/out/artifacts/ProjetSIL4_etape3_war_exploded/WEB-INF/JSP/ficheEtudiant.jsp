@@ -13,19 +13,19 @@
 	<div class="row">
 		<div class="col-6">
 
-			<h3>Fiche de <%=etudiant.getPrenom()%> <%=etudiant.getNom()%></h3>
+			<h3>Fiche <%=etudiant.getPrenom()%> <%=etudiant.getNom()%></h3>
 
 			<table class="table table-striped table-dark">
 				<tr>
-					<td>Groupe</td>
+					<th>Groupe</th>
 					<td><%=etudiant.getGroupe().getNom()%></td>
 				</tr>
 				<tr>
-					<td>Moyenne Generale</td>
+					<th>Moyenne Générale</th>
 					<td><%=note%></td>
 				</tr>
 				<tr>
-					<td>Absences</td>
+					<th>Absences</th>
 <%--					<td><%=nbAbsences%></td>--%>
 					<td><%=etudiant.getNbAbsences()%></td>
 				</tr>
@@ -37,10 +37,12 @@
 			<div class="btn-group" role="group">
 				<form method="post">
 					<div class="form-group">
-						<label for="MoyenneGenerale">Moyenne Generale</label>
+						<label for="MoyenneGenerale">Modifier moyenne générale</label>
 						<input class="form-control" type="text" id="MoyenneGenerale" name="moyenne" value="<%=etudiant.getMoyenneGenerale()%>">
 						<input type="hidden" name="id" value="<%=etudiant.getId()%>">
-						<input class="form-control" type="text" id="rrr" name="absence" value="<%=etudiant.getNbAbsences()%>">
+						<br />
+						<label>Modifier nombre d'absence(s)</label>
+						<input class="form-control" type="text" id="id" name="absence" value="<%=etudiant.getNbAbsences()%>">
 
 					</div>
 					<button type="submit" class="btn btn-primary">Enregistrer</button>

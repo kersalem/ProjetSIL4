@@ -59,7 +59,7 @@
         </init-param>
         <init-param>
             <param-name>urlEtudiantEdition</param-name>
-            <param-value>/WEB-INF/JSP/etudiantEdition.jsp</param-value>
+            <param-value>/WEB-INF/JSP/notes/etudiantEdition.jsp</param-value>
         </init-param>
         <init-param>
             <param-name>urlConsultationGroupes</param-name>
