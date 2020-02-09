@@ -40,6 +40,7 @@
 						<label for="MoyenneGenerale">Moyenne Generale</label>
 						<input class="form-control" type="text" id="MoyenneGenerale" name="moyenne" value="<%=etudiant.getMoyenneGenerale()%>">
 						<input type="hidden" name="id" value="<%=etudiant.getId()%>">
+						<input class="form-control" type="text" id="rrr" name="absence" value="<%=etudiant.getNbAbsences()%>">
 
 					</div>
 					<button type="submit" class="btn btn-primary">Enregistrer</button>

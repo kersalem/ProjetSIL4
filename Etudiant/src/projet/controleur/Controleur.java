@@ -116,8 +116,11 @@ public class Controleur extends HttpServlet {
 		Etudiant etudiant = EtudiantDAO.retrieveById(idEtudiant);
 
 		int moyenne = Integer.parseInt(request.getParameter("moyenne"));
+		int absence = Integer.parseInt(request.getParameter("absence"));
 
 		etudiant.setMoyenneGenerale(moyenne);
+		etudiant.setNbAbsences(absence);
+
 		EtudiantDAO.update(etudiant);
 
 		try {
