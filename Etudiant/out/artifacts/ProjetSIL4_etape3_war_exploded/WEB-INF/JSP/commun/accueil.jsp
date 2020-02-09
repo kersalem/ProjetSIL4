@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12 justify-content-center">
-            <p>Bienvenu dans notre application de consultation des notes et absences</p>
+            <h2>Bienvenu dans notre application de consultation des notes et absences</h2>
         </div>
     </div>
 </div>

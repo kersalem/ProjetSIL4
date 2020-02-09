@@ -26,23 +26,20 @@
 				</tr>
 				<tr>
 					<th>Absences</th>
-<%--					<td><%=nbAbsences%></td>--%>
 					<td><%=etudiant.getNbAbsences()%></td>
 				</tr>
 			</table>
-			<%--<div class="btn-group" role="group">
-				<a class="btn btn-primary" href="<%= application.getContextPath()%>/do/enleverAbsencesEtudiant?id=<%=etudiant.getId()%>"> Enlever absences </a>
-				<a class="btn btn-primary" href="<%= application.getContextPath()%>/do/ajouterAbsencesEtudiant?id=<%=etudiant.getId()%>"> Ajouter absences </a>
-			</div>--%>
 			<div class="btn-group" role="group">
 				<form method="post">
 					<div class="form-group">
 						<label for="MoyenneGenerale">Modifier moyenne générale</label>
 						<input class="form-control" type="text" id="MoyenneGenerale" name="moyenne" value="<%=etudiant.getMoyenneGenerale()%>">
+
 						<input type="hidden" name="id" value="<%=etudiant.getId()%>">
 						<br />
+
 						<label>Modifier nombre d'absence(s)</label>
-						<input class="form-control" type="text" id="id" name="absence" value="<%=etudiant.getNbAbsences()%>">
+						<input class=" form-control" type="text" id="nbAbsences" name="absence" value="<%=etudiant.getNbAbsences()%>">
 
 					</div>
 					<button type="submit" class="btn btn-primary">Enregistrer</button>

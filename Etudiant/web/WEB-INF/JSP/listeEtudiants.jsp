@@ -28,12 +28,11 @@
 					</thead>
 					<tbody>
 						<%
-						int sommeMoyenneGenerale = 0;
 						for (Etudiant etudiant : listeEtudiants) {
 						%>
 							<tr>
 								<td><a class="nav-item nav-link text-white" href="<%= application.getContextPath()%>/do/etudiant?id=<%=etudiant.getId()%>"><%=etudiant.getPrenom()%> <%=etudiant.getNom()%></a></td>
-								<td><a class="nav-item nav-link text-white" href="<%= application.getContextPath()%>/do/consultationGroupes"><%=etudiant.getGroupe().getNom()%></a></td>
+								<td><a class="nav-item nav-link text-white" href="<%= application.getContextPath()%>/do/ficheGroupes?id=<%=etudiant.getGroupe().getId()%>"><%=etudiant.getGroupe().getNom()%></a></td>
 							</tr>
 						<%
 						}
