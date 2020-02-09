@@ -16,31 +16,33 @@
 	Map<Etudiant,Integer> listeNotesEtudiants = (Map<Etudiant,Integer>)request.getAttribute("listeNotesEtudiants");
 	%-->
 
-<div style="background-color:#D8F6CE">
-	<!-- AFFICHAGE d'un titre  -->
-	<h3>Consultations notes</h3>
+<div class="container">
+	<div class="row">
+		<div class="col-6">
+			<!-- AFFICHAGE d'un titre  -->
+			<h3>Consultations notes</h3>
 
-		<!-- AFFICHAGE des notes des étudiants  -->
-		<%--
-			<% if (listeNotesEtudiants.size() != 0) {%>
-		--%>
-
-		<!-- afficher notes  -->
-	<table border="1">
-
-		<%
-			for (Etudiant etudiant : listeNotesEtudiants) {
-		%>
-			<tr>
-				<td> <%=etudiant.getPrenom() + " " + etudiant.getNom()%></td>
-			</tr>
-			<tr>
-				<td for="MoyenneGenerale">Moyenne Generale</td>
-				<td type="text" id="MoyenneGenerale"><%=etudiant.getMoyenneGenerale()%></td>
-			</tr>
-	<% }%>
-	</table>
-
-
+				<!-- afficher notes  -->
+			<table class="table table-striped table-dark">
+				<%
+					int moyenneGenerale = 0;
+					int nbEtudiant = 0;
+					for (Etudiant etudiant : listeNotesEtudiants) {
+				%>
+					<tr>
+						<td> <%=etudiant.getPrenom() + " " + etudiant.getNom()%></td>
+						<td type="text" id="MoyenneGenerale"><%=etudiant.getMoyenneGenerale()%></td>
+					</tr>
+				<%
+					nbEtudiant++;
+					moyenneGenerale += etudiant.getMoyenneGenerale();
+				%>
+				<% }%>
+			</table>
+			<%
+				moyenneGenerale = moyenneGenerale / nbEtudiant;
+			%>
+			<div>Moyenne générale : <%=moyenneGenerale%></div>
+		</div>
+	</div>
 </div>
-	<blockquote>je suis consultationNotes.jsp</blockquote>

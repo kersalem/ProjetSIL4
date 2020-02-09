@@ -9,32 +9,42 @@
 <%-- USEBEAN --%>
 <jsp:useBean id="listeEtudiants" type="java.util.Collection<projet.data.Etudiant>" scope="request"/>
 
-<div style="background-color:#D8F6CE">
+<div class="container">
+	<div class="row">
+		<div class="col-6">
+			<!-- AFFICHAGE d'un titre  -->
+			<h3>Liste des étudiants</h3>
 
-	<!-- AFFICHAGE d'un titre  -->
-	<h3>Liste des étudiants</h3>
+			<!-- AFFICHAGE des notes des étudiants  -->
+			<% if (listeEtudiants.size() != 0) {%>
 
-	<!-- AFFICHAGE des notes des étudiants  -->
-	<% if (listeEtudiants.size() != 0) {%>
+			<!-- tableau de notes  -->
+				<table class="table table-striped table-dark">
+					<thead>
+						<tr>
+							<th scope="col">Nom</th>
+							<th scope="col">Groupe</th>
+						</tr>
+					</thead>
+					<tbody>
+						<%
+						int sommeMoyenneGenerale = 0;
+						for (Etudiant etudiant : listeEtudiants) {
+						%>
+							<tr>
+								<td><a href="<%= application.getContextPath()%>/do/etudiant?id=<%=etudiant.getId()%>"><%=etudiant.getPrenom()%> <%=etudiant.getNom()%></a></td>
+								<td><a href="<%= application.getContextPath()%>/do/consultationGroupes"><%=etudiant.getGroupe().getNom()%></a></td>
+							</tr>
+						<%
+						}
+						%>
+					<tbody>
+				</table>
 
-	<!-- tableau de notes  -->
-		<table border="1">
+			<% } else {%>
 
-		<%
-		int sommeMoyenneGenerale = 0;
-		for (Etudiant etudiant : listeEtudiants) {
-		%>
-			<tr>
-				<td><a href="<%= application.getContextPath()%>/do/etudiant?id=<%=etudiant.getId()%>"><%=etudiant.getPrenom()%> <%=etudiant.getNom()%></a></td>
-				<%--<td><%=etudiant.getGroupe()%></td>--%>
-			</tr>
-		<%
-		}
-		%>
-		</table>
-
-	<% } else {%>
-
-		<p>Aucun étudiant</p>
-	<%}%>
+				<p>Aucun étudiant</p>
+			<%}%>
+		</div>
+	</div>
 </div>
