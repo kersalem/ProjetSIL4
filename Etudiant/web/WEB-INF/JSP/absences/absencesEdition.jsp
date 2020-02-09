@@ -9,27 +9,31 @@
 <div class="container">
     <div class="row">
         <div class="col-6">
+
             <h3>Editer absences</h3>
-           <form method="post" class="col-sm form-group">
+            <form method="post">
+            <table class="table table-striped table-dark">
+                <tr>
+                    <th>Nom / Prénom</th>
+                    <th>Nombre absences</th>
+                </tr>
                 <%
                     for (Etudiant etudiant : absencesEdition) {
                 %>
-                   <div class="col-md3" >
-                       <hr>
-                       <div class="form-group">
-                            <p> <%=etudiant.getPrenom() + " " + etudiant.getNom()%></p>
-                       </div>
-                       <div class="form-group col-3">
-                            <label for="nbAbsences">Absences</label>
-                           <input class="form-control" type="text" id="nbAbsences" name="<%=etudiant.getId()%>" value="<%=etudiant.getNbAbsences()%>">
-                           <div class="btn-group" role="group">
-                               <a class="btn btn-primary" href="<%= application.getContextPath()%>/do/enleverAbsences?id=<%=etudiant.getId()%>"> - </a>
-                               <a class="btn btn-primary" href="<%= application.getContextPath()%>/do/ajouterAbsences?id=<%=etudiant.getId()%>"> + </a>
-                           </div>
-                       </div>
-                    </div>
+                       <tr>
+                           <td class="col-4"><%=etudiant.getPrenom() + " " + etudiant.getNom()%></td>
+                           <td>
+                               <div style="margin:0 10px; display: flex; flex-direction: row;">
+                                   <a class="btn btn-primary" href="<%= application.getContextPath()%>/do/enleverAbsences?id=<%=etudiant.getId()%>"> - </a>
+                                   <input class="form-control" type="text" id="nbAbsences" name="<%=etudiant.getId()%>" value="<%=etudiant.getNbAbsences()%>">
+                                   <a class="btn btn-primary" href="<%= application.getContextPath()%>/do/ajouterAbsences?id=<%=etudiant.getId()%>"> + </a>
+                               </div>
+                           </td>
+                   </tr>
                 <%}%>
                 <button type="submit" class="btn btn-primary">Enregistrer</button>
+                <br />
+            </table>
             </form>
         </div>
     </div>

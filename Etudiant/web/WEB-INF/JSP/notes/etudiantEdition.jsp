@@ -10,24 +10,27 @@
 <div class="container">
     <div class="row">
         <div class="col-6">
-            <h3>Editer notes</h3>
-            <form method="post" class="col-sm form-group">
-                <%
-                    for (Etudiant etudiant : etudiantEdition) {
-                %>
-                    <hr>
 
-                    <div class="form-group">
-                        <p><%=etudiant.getPrenom() + " " + etudiant.getNom()%></p>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label" for="MoyenneGenerale">Moyenne Generale</label>
-                        <div class="col-sm-10">
+            <h3>Editer notes</h3>
+            <form method="post">
+                <table class="table table-striped table-dark">
+                    <tr>
+                        <th>Nom / Prénom</th>
+                        <th>Moyenne générale</th>
+                    </tr>
+                    <%
+                        for (Etudiant etudiant : etudiantEdition) {
+                    %>
+                     <tr>
+                        <td class="col-4"><%=etudiant.getPrenom() + " " + etudiant.getNom()%></td>
+                        <td>
                             <input class="form-control" type="number" id="MoyenneGenerale" name="<%=etudiant.getId()%>" value="<%=etudiant.getMoyenneGenerale()%>">
-                        </div>
-                    </div>
-                <%}%>
-                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                        </td>
+                     </tr>
+                    <%}%>
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    <br />
+                </table>
             </form>
         </div>
     </div>

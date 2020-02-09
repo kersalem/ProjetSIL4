@@ -73,6 +73,7 @@ public class Controleur extends HttpServlet {
 		// on passe la main au GET
 
 		if (action.equals("/etudiantEdition")) { // editer notes
+
 			doEtudiantEditionPost(request, response);
 
 		} else if (action.equals("/absencesEdition")) { // editer absecence
@@ -82,6 +83,8 @@ public class Controleur extends HttpServlet {
 			doModifierMoyennePost(request, response);
 
 		} else if (action.equals("/ficheGroupes")) {
+			System.out.println("****************** etudiantEdition*******************");
+
 			doFicheGroupesPost(request, response);
 
 		}else {
@@ -141,7 +144,7 @@ public class Controleur extends HttpServlet {
 	private void doFicheGroupesPost(HttpServletRequest request, HttpServletResponse response) {
 
 		Collection<Etudiant> etudiants = EtudiantDAO.getAll();
-		System.out.println("addddddddddddddddddddddddddddddddd/    doAbsencesEditionPost");
+		System.out.println("addddddddddddddddddddddddddddddddddoAbsencesEditionPost");
 
 		for(Etudiant etudiant : etudiants) {
 
@@ -154,7 +157,7 @@ public class Controleur extends HttpServlet {
 			EtudiantDAO.update(etudiant);
 		}
 		try {
-			doEtudiant(request, response);
+			doFicheGroupes(request, response);
 
 		} catch (ServletException e) {
 			e.printStackTrace();
@@ -380,8 +383,6 @@ public class Controleur extends HttpServlet {
 
 		int idGroupe = Integer.parseInt(request.getParameter("id"));
 		Groupe groupe = GroupeDAO.retrieveById(idGroupe);
-		System.out.println("****************** doFicheGroupes*******************");
-
 		request.setAttribute("groupe", groupe);
 
 		request.setAttribute("content", urlFicheGroupes);
