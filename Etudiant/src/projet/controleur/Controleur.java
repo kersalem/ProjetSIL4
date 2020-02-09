@@ -119,9 +119,7 @@ public class Controleur extends HttpServlet {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
-
 
 	// GET
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -172,23 +170,21 @@ public class Controleur extends HttpServlet {
 		loadJSP(urlGestionTemplate, request, response);
 	}
 
-	/////////////////////// EDITER Notes
+	/////////////////////// EDITER ABSENCES
 
-	private void doEtudiantEdition(HttpServletRequest request,
+	private void doModifierMoyenne(HttpServletRequest request,
 								   HttpServletResponse response) throws ServletException, IOException {
 
-		/*if(request.getMethod().equalsIgnoreCase("post")) {
-			System.out.println("LAAAAAAAAAAAA");
+		// Récupérer les étudiants
+		Collection<Etudiant> modofierMoyenneG = EtudiantDAO.getAll();
 
-		}*/
-		Collection<Etudiant> etudiantEdition = EtudiantDAO.getAll();
-		request.setAttribute("etudiantEdition", etudiantEdition);
+		request.setAttribute("modofierMoyenneG", modofierMoyenneG);
 
-		request.setAttribute("content", urlEtudiantEdition);
-		loadJSP(urlGestionTemplate, request, response);
+		response.sendRedirect((request.getContextPath() + "/do/etudiant"));
+/*
+		response.sendRedirect(request.getContextPath() + "/do/etudiant?id=" + etudiant.getId());
+*/
 	}
-
-	/////////////////////// EDITER ABSENCES
 
 	private void doAbsencesEdition(HttpServletRequest request,
 								   HttpServletResponse response) throws ServletException, IOException {
@@ -201,7 +197,6 @@ public class Controleur extends HttpServlet {
 		request.setAttribute("content", urlAbsencesEdition);
 		loadJSP(urlGestionTemplate, request, response);
 	}
-
 
 	private void doAddAbsences(HttpServletRequest request,
 								   HttpServletResponse response) throws ServletException, IOException {
@@ -233,6 +228,44 @@ public class Controleur extends HttpServlet {
 		response.sendRedirect((request.getContextPath() + "/do/absencesEdition"));
 
 	}
+
+
+	/////////////////////// EDITER Notes
+
+	private void doEtudiantEdition(HttpServletRequest request,
+								   HttpServletResponse response) throws ServletException, IOException {
+
+		/*if(request.getMethod().equalsIgnoreCase("post")) {
+			System.out.println("LAAAAAAAAAAAA");
+
+		}*/
+		Collection<Etudiant> etudiantEdition = EtudiantDAO.getAll();
+		request.setAttribute("etudiantEdition", etudiantEdition);
+
+		request.setAttribute("content", urlEtudiantEdition);
+		loadJSP(urlGestionTemplate, request, response);
+	}
+
+	///////////////////////// Détails étudiant
+
+	private void doEtudiant(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		// Récupérer le parametre id, l'objet Etudiant associé, le nombre d'absences et la moyenne
+		int idEtudiant = Integer.parseInt(request.getParameter("id"));
+		Etudiant etudiant = EtudiantDAO.retrieveById(idEtudiant);
+		int nbAbsences = etudiant.getNbAbsences();
+		int note = etudiant.getMoyenneGenerale();
+
+		// Mettre l'objet étudiant en attribut pour affichage par la vue correspondant
+		request.setAttribute("etudiant", etudiant);
+		request.setAttribute("nbAbsences", nbAbsences);
+		request.setAttribute("note", note);
+
+		request.setAttribute("content", urlEtudiant);
+		loadJSP(urlGestionTemplate, request, response);
+	}
+
 	// /////////////////////// CONSULTATION NOTES
 
 	private void doConsultationNotes(HttpServletRequest request,
@@ -261,47 +294,20 @@ public class Controleur extends HttpServlet {
 		loadJSP(urlGestionTemplate, request, response);
 	}
 
-///////////////////////// Détails étudiant
-
-	private void doEtudiant(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-		// Récupérer le parametre id, l'objet Etudiant associé, le nombre d'absences et la moyenne
-		int idEtudiant = Integer.parseInt(request.getParameter("id"));
-		Etudiant etudiant = EtudiantDAO.retrieveById(idEtudiant);
-		int nbAbsences = etudiant.getNbAbsences();
-		int note = etudiant.getMoyenneGenerale();
-
-		// Mettre l'objet étudiant en attribut pour affichage par la vue correspondant
-		request.setAttribute("etudiant", etudiant);
-		request.setAttribute("nbAbsences", nbAbsences);
-		request.setAttribute("note", note);
-
-		request.setAttribute("content", urlEtudiant);
-		loadJSP(urlGestionTemplate, request, response);
-	}
-
 	///////////////////////// Détails groupe
 
 	private void doFicheGroupes(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		int idGroupe = Integer.parseInt(request.getParameter("id"));
+		Groupe groupe = GroupeDAO.retrieveById(idGroupe);
+		System.out.println("****************** doFicheGroupes*******************");
 
-/*		int idGroupe = Integer.parseInt(request.getParameter("id"));
-		Groupe groupeTest = GroupeDAO.retrieveById(idGroupe);
-		request.setAttribute("groupe", groupeTest);*/
-
-		Collection<Groupe> ficheGroupes = GroupeDAO.getAll();
-
-/*		List<Etudiant> etudiants = groupe.getEtudiants();
-		System.out.println("****************** etudiants" + etudiants);
-
-		request.setAttribute("etudiants", etudiants);*/
-
-		request.setAttribute("ficheGroupes", ficheGroupes);
+		request.setAttribute("groupe", groupe);
 
 		request.setAttribute("content", urlFicheGroupes);
 		loadJSP(urlGestionTemplate, request, response);
+
 	}
 	/////////////////////// Liste des étudiants
 	private void doListeEtudiants(HttpServletRequest request,
@@ -321,7 +327,6 @@ public class Controleur extends HttpServlet {
 	private void doConsultationGroupes(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Collection<Groupe> listeGroupes = GroupeDAO.getAll();
-		System.out.println("****************** consult groupe");
 
 		request.setAttribute("listeGroupes", listeGroupes);
 

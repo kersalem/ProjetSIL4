@@ -1,5 +1,6 @@
 package projet.data;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +15,7 @@ import javax.persistence.*;
  */
 @Entity
 public class Groupe implements Serializable {
-   
+
 	@Id
 	@GeneratedValue
 	private Integer id;
@@ -22,8 +23,8 @@ public class Groupe implements Serializable {
 	@Column(unique=true, nullable=false)
 	private String nom;
 	
-	@OneToMany(mappedBy= "groupe", fetch= FetchType.LAZY)	// LAZY = fetch when needed, EAGER = fetch immediately
-	private List<Etudiant> etudiants;
+	@OneToMany(mappedBy= "groupe", fetch=FetchType.LAZY)	// LAZY = fetch when needed, EAGER = fetch immediately
+	private List<Etudiant> etudiants = new ArrayList<>();
 
 /*	@ManyToMany(mappedBy = "groupes", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private List<Module> modules = new ArrayList<>();
@@ -39,10 +40,8 @@ public class Groupe implements Serializable {
 		this.id = id;
 		this.nom = nom;
 		this.etudiants = etudiants;
-	}   
+	}
 	public Integer getId() {
-		System.out.println("****************** getId");
-		System.out.println("****************** this.Id" + this.id);
 		return this.id;
 	}
 
@@ -60,13 +59,8 @@ public class Groupe implements Serializable {
 	
 
 	public List<Etudiant> getEtudiants() {
-		System.out.println("****************** getEtudiants");
-		System.out.println("****************** this.etudiants" + this.etudiants);
-
 		return this.etudiants;
 	}
-
-
 
 	/*public List<Module> getModules() {
 		return modules;
