@@ -64,19 +64,26 @@ public class Controleur extends HttpServlet {
 	// POST
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
+		System.out.println("DOPOST");
 		String action = request.getPathInfo();
-		if (action == null) {
+		if (action == null)
+		{
 			action = "/accueil";
 		}
 		// on passe la main au GET
-		if (action.equals("/etudiantEdition")) {
+
+		if (action.equals("/etudiantEdition")) { // editer notes
 			doEtudiantEditionPost(request, response);
 
-		} else if (action.equals("/absencesEdition")) {
+		} else if (action.equals("/absencesEdition")) { // editer absecence
 			doAbsencesEditionPost(request, response);
 
-		} else {
+		} else if (action.equals("/etudiant")) {
+			doModifierMoyennePost(request, response);
+		}else {
 			// Autres cas
+			System.out.println("DOGET FROM DOPOST");
+
 			doGet(request, response);
 		}
 	}
@@ -93,6 +100,28 @@ public class Controleur extends HttpServlet {
 		}
 		try {
 			doEtudiantEdition(request, response);
+
+		} catch (ServletException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void doModifierMoyennePost (HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		int idEtudiant = Integer.parseInt(request.getParameter("id"));
+
+		Etudiant etudiant = EtudiantDAO.retrieveById(idEtudiant);
+
+		int moyenne = Integer.parseInt(request.getParameter("moyenne"));
+
+		etudiant.setMoyenneGenerale(moyenne);
+		EtudiantDAO.update(etudiant);
+
+		try {
+			doEtudiant(request, response);
 
 		} catch (ServletException e) {
 			e.printStackTrace();
@@ -153,9 +182,13 @@ public class Controleur extends HttpServlet {
 			doFicheGroupes(request, response);
 		} else if (action.equals("/ajouterAbsences")) {
 			doAddAbsences(request, response);
+		}else if (action.equals("/ajouterAbsencesEtudiant")) {
+			doAddAbsencesEtudiant(request, response);
 		}else if (action.equals("/enleverAbsences")) {
 			doEnleverAbsences(request, response);
-		}else {
+		}else if (action.equals("/enleverAbsencesEtudiant")) {
+			doEnleverAbsencesEtudiant(request, response);
+		} else {
 			// Autres cas
 			doAcceuil(request, response);
 		}
@@ -170,20 +203,19 @@ public class Controleur extends HttpServlet {
 		loadJSP(urlGestionTemplate, request, response);
 	}
 
-	/////////////////////// EDITER ABSENCES
+	private void doEnleverAbsencesEtudiant(HttpServletRequest request,
+										   HttpServletResponse response) throws ServletException, IOException {
 
-	private void doModifierMoyenne(HttpServletRequest request,
-								   HttpServletResponse response) throws ServletException, IOException {
+		int idEtudiant = Integer.parseInt(request.getParameter("id"));
 
-		// Récupérer les étudiants
-		Collection<Etudiant> modofierMoyenneG = EtudiantDAO.getAll();
+		Etudiant etudiant = EtudiantDAO.retrieveById(idEtudiant);
 
-		request.setAttribute("modofierMoyenneG", modofierMoyenneG);
+		etudiant.enleverAbsence();
+
+		EtudiantDAO.update(etudiant);
 
 		response.sendRedirect((request.getContextPath() + "/do/etudiant"));
-/*
-		response.sendRedirect(request.getContextPath() + "/do/etudiant?id=" + etudiant.getId());
-*/
+
 	}
 
 	private void doAbsencesEdition(HttpServletRequest request,
@@ -210,6 +242,21 @@ public class Controleur extends HttpServlet {
 		EtudiantDAO.update(etudiant);
 
 		response.sendRedirect((request.getContextPath() + "/do/absencesEdition"));
+
+	}
+
+	private void doAddAbsencesEtudiant(HttpServletRequest request,
+							   HttpServletResponse response) throws ServletException, IOException {
+
+		int idEtudiant = Integer.parseInt(request.getParameter("id"));
+
+		Etudiant etudiant = EtudiantDAO.retrieveById(idEtudiant);
+
+		etudiant.ajouterAbsence();
+
+		EtudiantDAO.update(etudiant);
+
+		response.sendRedirect((request.getContextPath() + "/do/etudiant"));
 
 	}
 

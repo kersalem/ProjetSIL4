@@ -94,9 +94,9 @@ public class Etudiant implements Serializable {
 		return moyenneGenerale;
 	}
 
-	public void setMoyenneGenerale(int moyenneGenerale) {
+	public void setMoyenneGenerale(float moyenneGenerale) {
 		if ((moyenneGenerale >=0) && (moyenneGenerale <=20)) {
-			this.moyenneGenerale = moyenneGenerale;
+			this.moyenneGenerale = (int) moyenneGenerale;
 		}
 	}
 }

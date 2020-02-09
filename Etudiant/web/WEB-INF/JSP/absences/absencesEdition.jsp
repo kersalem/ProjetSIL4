@@ -18,7 +18,6 @@
                    <div class="form-group">
                         <p> <%=etudiant.getPrenom() + " " + etudiant.getNom()%></p>
                    </div>
-                   <% System.out.println( "je suis dans jsp edition absences"); %>
                    <div class="form-group col-3">
                         <label for="nbAbsences">Absences</label>
                        <input class="form-control" type="text" id="nbAbsences" name="<%=etudiant.getId()%>" value="<%=etudiant.getNbAbsences()%>">

@@ -1,6 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<%--
+<jsp:useBean id="modofierMoyenneG" type="java.util.Collection<projet.data.Etudiant>" scope="request"/>
+--%>
 
 <jsp:useBean id="etudiant" class="projet.data.Etudiant" scope="request"/>
 <jsp:useBean id="nbAbsences" type="java.lang.Integer" scope="request"/>
@@ -32,10 +35,12 @@
 				<a class="btn btn-primary" href="<%= application.getContextPath()%>/do/ajouterAbsencesEtudiant?id=<%=etudiant.getId()%>"> Ajouter absences </a>
 			</div>--%>
 			<div class="btn-group" role="group">
-				<form>
+				<form method="post">
 					<div class="form-group">
 						<label for="MoyenneGenerale">Moyenne Generale</label>
-						<input class="form-control" type="text" id="MoyenneGenerale" name="<%=etudiant.getId()%>" value="<%=etudiant.getMoyenneGenerale()%>">
+						<input class="form-control" type="text" id="MoyenneGenerale" name="moyenne" value="<%=etudiant.getMoyenneGenerale()%>">
+						<input type="hidden" name="id" value="<%=etudiant.getId()%>">
+
 					</div>
 					<button type="submit" class="btn btn-primary">Enregistrer</button>
 				</form>
