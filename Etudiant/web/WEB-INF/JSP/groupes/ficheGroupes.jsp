@@ -9,27 +9,31 @@
 <jsp:useBean id="ficheGroupes" type="java.util.Collection<projet.data.Groupe>" scope="request"/>
 
 
-<div style="background-color:#D8F6CE">
-    <!-- AFFICHAGE en fonction du groupe ou de ALL  -->
-<%--
-    <h3>Détails de  <%=groupe.getNom()%></h3>
---%>
+<div class="container">
+    <div class="row">
+        <div class="col-12 ">
+            <!-- AFFICHAGE en fonction du groupe ou de ALL  -->
+        <%--
+            <h3>Détails de  <%=groupe.getNom()%></h3>
+        --%>
 
-    <table border="1">
-        <% System.out.println( "je suis dans jsp fiche groupe"); %>
+            <table class="table table-striped table-dark">
+                <% System.out.println( "je suis dans jsp fiche groupe"); %>
 
-            <%--<td>etu === <%=etudiants%></td>--%>
-    <%
-        for (Groupe groupe : ficheGroupes) {
-    %>
-        <tr>
-         <%--   <td><%=groupe.getNom()%></td>
-            <td><%=groupeTest.getNom()%></td>--%>
+                    <%--<td>etu === <%=etudiants%></td>--%>
+            <%
+                for (Groupe groupe : ficheGroupes) {
+            %>
+                <tr>
+                 <%--   <td><%=groupe.getNom()%></td>
+                    <td><%=groupeTest.getNom()%></td>--%>
 
-            <td><%=groupe.getEtudiants()%></td>
-        </tr>
-    </table>
-    <%
-        }
-    %>
+                    <td><%=groupe.getEtudiants()%></td>
+                </tr>
+            </table>
+            <%
+                }
+            %>
+        </div>
+    </div>
 </div>
