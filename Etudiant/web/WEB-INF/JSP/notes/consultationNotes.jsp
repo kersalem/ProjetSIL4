@@ -42,7 +42,7 @@
 			<%
 				moyenneGenerale = moyenneGenerale / nbEtudiant;
 			%>
-			<div>Moyenne générale : <%=moyenneGenerale%> /20</div>
+			<h3>Moyenne générale : <%=moyenneGenerale%> /20</h3>
 		</div>
 	</div>
 </div>

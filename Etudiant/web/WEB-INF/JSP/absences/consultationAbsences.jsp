@@ -37,7 +37,7 @@
                     <%}%>
                 <tbody>
             </table>
-            <div>Total de <%=totalAbsences%> absences</div>
+            <h4>Total de <%=totalAbsences%> absences</h4>
         </div>
     </div>
 </div>

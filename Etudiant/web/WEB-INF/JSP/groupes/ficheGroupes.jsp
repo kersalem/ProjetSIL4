@@ -21,7 +21,9 @@
                 </tr>
                 <% System.out.println( "je suis dans jsp fiche groupe"); %>
                 <%
-                    int sommeMoyenneGenerale = 0;
+                    int totalAbsences = 0;
+                    int moyenneGenerale = 0;
+                    int nbEtudiant = 0;
                     for (Etudiant etudiant : groupe.getEtudiants()) {
                 %>
                 <tr>
@@ -35,9 +37,20 @@
                     </form></td>
                 </tr>
                 <%
+                    totalAbsences += etudiant.getNbAbsences();
+                    nbEtudiant++;
+                    moyenneGenerale += etudiant.getMoyenneGenerale();
+                %>
+                <%
                     }
                 %>
             </table>
+            <%
+                moyenneGenerale = moyenneGenerale / nbEtudiant;
+            %>
+            <h3>Moyenne générale : <%=moyenneGenerale%> /20</h3>
+            <h4>Total de <%=totalAbsences%> absences</h4>
+            <br />
             <button type="submit" class="btn btn-primary">Enregistrer</button>
         </div>
     </div>
