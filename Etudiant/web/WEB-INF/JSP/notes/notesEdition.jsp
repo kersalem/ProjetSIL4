@@ -6,7 +6,7 @@
 <%@ page import="projet.data.*"%>
 
 <%-- USEBEAN --%>
-<jsp:useBean id="etudiantEdition" type="java.util.Collection<projet.data.Etudiant>" scope="request"/>
+<jsp:useBean id="notesEdition" type="java.util.Collection<projet.data.Etudiant>" scope="request"/>
 <div class="container">
     <div class="row">
         <div class="col-6">
@@ -19,7 +19,7 @@
                         <th>Moyenne générale</th>
                     </tr>
                     <%
-                        for (Etudiant etudiant : etudiantEdition) {
+                        for (Etudiant etudiant : notesEdition) {
                     %>
                      <tr>
                         <td class="col-4"><%=etudiant.getPrenom() + " " + etudiant.getNom()%></td>

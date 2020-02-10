@@ -24,7 +24,7 @@
                 <a class="nav-item nav-link" href="<%= application.getContextPath()%>/do/accueil">Accueil</a>
                 <a class="nav-item nav-link" href="<%= application.getContextPath()%>/do/listeEtudiants">Les étudiants</a>
                 <a class="nav-item nav-link" href="<%= application.getContextPath()%>/do/consultationNotes">Consulter les notes</a>
-                <a class="nav-item nav-link" href="<%= application.getContextPath()%>/do/etudiantEdition">Editer notes</a>
+                <a class="nav-item nav-link" href="<%= application.getContextPath()%>/do/notesEdition">Editer notes</a>
                 <a class="nav-item nav-link" href="<%= application.getContextPath()%>/do/consultationAbsences">Consulter absences</a>
                 <a class="nav-item nav-link" href="<%= application.getContextPath()%>/do/absencesEdition">Editer absences</a>
                 <a class="nav-item nav-link" href="<%= application.getContextPath()%>/do/consultationGroupes">Consultation groupes</a>

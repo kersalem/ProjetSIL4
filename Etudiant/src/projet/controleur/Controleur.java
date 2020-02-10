@@ -31,10 +31,10 @@ public class Controleur extends HttpServlet {
 	private String urlEtudiant;
 	private String urlConsultationAbsences;
 	private String urlConsultationNotes;
-	private String urlEtudiantEdition;
 	private String urlAbsencesEdition;
 	private String urlConsultationGroupes;
 	private String urlFicheGroupes;
+	private String urlNotesEdition;
 
 
 	// INIT
@@ -47,7 +47,7 @@ public class Controleur extends HttpServlet {
 		urlEtudiant = getServletConfig().getInitParameter("urlEtudiant");
 		urlConsultationAbsences = getServletConfig().getInitParameter("urlConsultationAbsences");
 		urlConsultationNotes = getServletConfig().getInitParameter("urlConsultationNotes");
-		urlEtudiantEdition = getServletConfig().getInitParameter("urlEtudiantEdition");
+		urlNotesEdition = getServletConfig().getInitParameter("urlNotesEdition");
 		urlAbsencesEdition = getServletConfig().getInitParameter("urlAbsencesEdition");
 		urlConsultationGroupes = getServletConfig().getInitParameter("urlConsultationGroupes");
 		urlFicheGroupes = getServletConfig().getInitParameter("urlFicheGroupes");
@@ -72,9 +72,9 @@ public class Controleur extends HttpServlet {
 		}
 		// on passe la main au GET
 
-		if (action.equals("/etudiantEdition")) { // editer notes
+		if (action.equals("/notesEdition")) { // editer notes
 
-			doEtudiantEditionPost(request, response);
+			doNotesEditionPost(request, response);
 
 		} else if (action.equals("/absencesEdition")) { // editer absecence
 			doAbsencesEditionPost(request, response);
@@ -83,8 +83,6 @@ public class Controleur extends HttpServlet {
 			doModifierMoyennePost(request, response);
 
 		} else if (action.equals("/ficheGroupes")) {
-			System.out.println("****************** etudiantEdition*******************");
-
 			doFicheGroupesPost(request, response);
 
 		}else {
@@ -95,7 +93,7 @@ public class Controleur extends HttpServlet {
 		}
 	}
 
-	private void doEtudiantEditionPost(HttpServletRequest request, HttpServletResponse response) {
+	private void doNotesEditionPost(HttpServletRequest request, HttpServletResponse response) {
 
 		Collection<Etudiant> etudiants = EtudiantDAO.getAll();
 
@@ -106,7 +104,7 @@ public class Controleur extends HttpServlet {
 			EtudiantDAO.update(etudiant);
 		}
 		try {
-			doEtudiantEdition(request, response);
+			doNotesEdition(request, response);
 
 		} catch (ServletException e) {
 			e.printStackTrace();
@@ -209,8 +207,8 @@ public class Controleur extends HttpServlet {
 			doConsultationAbsences(request, response);
 		} else if (action.equals("/consultationNotes")) {
 			doConsultationNotes(request, response);
-		} else if (action.equals("/etudiantEdition")) {
-			doEtudiantEdition(request, response);
+		} else if (action.equals("/notesEdition")) {
+			doNotesEdition(request, response);
 		} else if (action.equals("/absencesEdition")) {
 			doAbsencesEdition(request, response);
 		} else if (action.equals("/consultationGroupes")) {
@@ -314,17 +312,17 @@ public class Controleur extends HttpServlet {
 
 	/////////////////////// EDITER Notes
 
-	private void doEtudiantEdition(HttpServletRequest request,
+	private void doNotesEdition(HttpServletRequest request,
 								   HttpServletResponse response) throws ServletException, IOException {
 
 		/*if(request.getMethod().equalsIgnoreCase("post")) {
 			System.out.println("LAAAAAAAAAAAA");
 
 		}*/
-		Collection<Etudiant> etudiantEdition = EtudiantDAO.getAll();
-		request.setAttribute("etudiantEdition", etudiantEdition);
+		Collection<Etudiant> notesEdition = EtudiantDAO.getAll();
+		request.setAttribute("notesEdition", notesEdition);
 
-		request.setAttribute("content", urlEtudiantEdition);
+		request.setAttribute("content", urlNotesEdition);
 		loadJSP(urlGestionTemplate, request, response);
 	}
 
