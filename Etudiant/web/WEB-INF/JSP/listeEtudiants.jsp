@@ -17,13 +17,14 @@
 
 			<!-- AFFICHAGE des notes des étudiants  -->
 			<% if (listeEtudiants.size() != 0) {%>
-
+			<form method="post">
 			<!-- tableau de notes  -->
 				<table class="table table-striped table-dark">
 					<thead>
 						<tr>
 							<th scope="col">Nom</th>
 							<th scope="col">Groupe</th>
+							<th scope="col"></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -33,13 +34,14 @@
 							<tr>
 								<td><a class="nav-item nav-link text-white" href="<%= application.getContextPath()%>/do/etudiant?id=<%=etudiant.getId()%>"><%=etudiant.getPrenom()%> <%=etudiant.getNom()%></a></td>
 								<td><a class="nav-item nav-link text-white" href="<%= application.getContextPath()%>/do/ficheGroupes?id=<%=etudiant.getGroupe().getId()%>"><%=etudiant.getGroupe().getNom()%></a></td>
+								<td><button type="submit" class="btn btn-primary"> X </button></td>
 							</tr>
 						<%
 						}
 						%>
 					<tbody>
 				</table>
-
+			</form>
 			<% } else {%>
 
 				<p>Aucun étudiant</p>

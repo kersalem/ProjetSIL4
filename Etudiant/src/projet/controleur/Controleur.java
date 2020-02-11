@@ -226,6 +226,8 @@ public class Controleur extends HttpServlet {
 			doEnleverAbsences(request, response);
 		}else if (action.equals("/creerEtudiant")) {
 			doCreerEtudiant(request, response);
+		}else if (action.equals("/supprimerEtudiant")) {
+			doSupprimerEtudiant(request, response);
 		}else {
 			// Autres cas
 			doAcceuil(request, response);
@@ -303,6 +305,17 @@ public class Controleur extends HttpServlet {
 		request.setAttribute("content", urlCreerEtudiant);
 		loadJSP(urlGestionTemplate, request, response);
 
+	}
+
+	private void doSupprimerEtudiant(HttpServletRequest request,
+								 HttpServletResponse response) throws ServletException, IOException {
+
+		System.out.println("**********doSupprimerEtudiant************************");
+		int idEtudiant = Integer.parseInt(request.getParameter("id"));
+		Etudiant etudiant = EtudiantDAO.retrieveById(idEtudiant);
+		EtudiantDAO.remove(etudiant);
+
+		response.sendRedirect(request.getContextPath() + "/do/listeEtudiants");
 	}
 
 	/////////////////////// EDITER Notes
