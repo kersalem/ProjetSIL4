@@ -28,6 +28,7 @@
                 <a class="nav-item nav-link" href="<%= application.getContextPath()%>/do/consultationAbsences">Consulter absences</a>
                 <a class="nav-item nav-link" href="<%= application.getContextPath()%>/do/absencesEdition">Editer absences</a>
                 <a class="nav-item nav-link" href="<%= application.getContextPath()%>/do/consultationGroupes">Consultation groupes</a>
+                <a class="nav-item nav-link" href="<%= application.getContextPath()%>/do/creerEtudiant">Ajouter étudiant</a>
             </div>
         </div>
     </nav>

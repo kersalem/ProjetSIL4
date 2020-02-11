@@ -35,6 +35,7 @@ public class Controleur extends HttpServlet {
 	private String urlConsultationGroupes;
 	private String urlFicheGroupes;
 	private String urlNotesEdition;
+	private String urlCreerEtudiant;
 
 
 	// INIT
@@ -51,6 +52,7 @@ public class Controleur extends HttpServlet {
 		urlAbsencesEdition = getServletConfig().getInitParameter("urlAbsencesEdition");
 		urlConsultationGroupes = getServletConfig().getInitParameter("urlConsultationGroupes");
 		urlFicheGroupes = getServletConfig().getInitParameter("urlFicheGroupes");
+		urlCreerEtudiant = getServletConfig().getInitParameter("urlCreerEtudiant");
 		// EtudiantDAO.create("Marie", "Kersalé");
 		// GroupeDAO.create("SIMO");
 	}
@@ -125,8 +127,6 @@ public class Controleur extends HttpServlet {
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");
 
-		System.out.println("nom//////////////////////////////////////" + nom);
-
 		etudiant.setMoyenneGenerale(moyenne);
 		etudiant.setNbAbsences(absence);
 		etudiant.setNom(nom);
@@ -148,7 +148,6 @@ public class Controleur extends HttpServlet {
 	private void doFicheGroupesPost(HttpServletRequest request, HttpServletResponse response) {
 
 		Collection<Etudiant> etudiants = EtudiantDAO.getAll();
-		System.out.println("addddddddddddddddddddddddddddddddddoAbsencesEditionPost");
 
 		for(Etudiant etudiant : etudiants) {
 
@@ -223,13 +222,11 @@ public class Controleur extends HttpServlet {
 			doFicheGroupes(request, response);
 		} else if (action.equals("/ajouterAbsences")) {
 			doAddAbsences(request, response);
-		}else if (action.equals("/ajouterAbsencesEtudiant")) {
-			doAddAbsencesEtudiant(request, response);
 		}else if (action.equals("/enleverAbsences")) {
 			doEnleverAbsences(request, response);
-		}else if (action.equals("/enleverAbsencesEtudiant")) {
-			doEnleverAbsencesEtudiant(request, response);
-		} else {
+		}else if (action.equals("/creerEtudiant")) {
+			doCreerEtudiant(request, response);
+		}else {
 			// Autres cas
 			doAcceuil(request, response);
 		}
@@ -242,21 +239,6 @@ public class Controleur extends HttpServlet {
 		// Inclusion du content dans le template
 		request.setAttribute("content", urlAccueil);
 		loadJSP(urlGestionTemplate, request, response);
-	}
-
-	private void doEnleverAbsencesEtudiant(HttpServletRequest request,
-										   HttpServletResponse response) throws ServletException, IOException {
-
-		int idEtudiant = Integer.parseInt(request.getParameter("id"));
-
-		Etudiant etudiant = EtudiantDAO.retrieveById(idEtudiant);
-
-		etudiant.enleverAbsence();
-
-		EtudiantDAO.update(etudiant);
-
-		response.sendRedirect((request.getContextPath() + "/do/etudiant"));
-
 	}
 
 	private void doAbsencesEdition(HttpServletRequest request,
@@ -286,21 +268,6 @@ public class Controleur extends HttpServlet {
 
 	}
 
-	private void doAddAbsencesEtudiant(HttpServletRequest request,
-							   HttpServletResponse response) throws ServletException, IOException {
-
-		int idEtudiant = Integer.parseInt(request.getParameter("id"));
-
-		Etudiant etudiant = EtudiantDAO.retrieveById(idEtudiant);
-
-		etudiant.ajouterAbsence();
-
-		EtudiantDAO.update(etudiant);
-
-		response.sendRedirect((request.getContextPath() + "/do/etudiant"));
-
-	}
-
 	private void doEnleverAbsences(HttpServletRequest request,
 							   HttpServletResponse response) throws ServletException, IOException {
 
@@ -315,16 +282,34 @@ public class Controleur extends HttpServlet {
 
 	}
 
+	private void doCreerEtudiant(HttpServletRequest request,
+								   HttpServletResponse response) throws ServletException, IOException {
+
+		String nom = request.getParameter("nom");
+		String prenom = request.getParameter("prenom");
+		String groupeId = request.getParameter("groupe");
+
+		if (nom != null && prenom != null && groupeId != null) {
+			Groupe groupe = GroupeDAO.retrieveById(Integer.parseInt(groupeId));
+			EtudiantDAO.create(nom, prenom, groupe);
+
+			response.sendRedirect(request.getContextPath() + "/do/listeEtudiants");
+			return;
+		}
+
+		List<Groupe> groupes = GroupeDAO.getAll();
+		request.setAttribute("groupes", groupes);
+
+		request.setAttribute("content", urlCreerEtudiant);
+		loadJSP(urlGestionTemplate, request, response);
+
+	}
 
 	/////////////////////// EDITER Notes
 
 	private void doNotesEdition(HttpServletRequest request,
 								   HttpServletResponse response) throws ServletException, IOException {
 
-		/*if(request.getMethod().equalsIgnoreCase("post")) {
-			System.out.println("LAAAAAAAAAAAA");
-
-		}*/
 		Collection<Etudiant> notesEdition = EtudiantDAO.getAll();
 		request.setAttribute("notesEdition", notesEdition);
 

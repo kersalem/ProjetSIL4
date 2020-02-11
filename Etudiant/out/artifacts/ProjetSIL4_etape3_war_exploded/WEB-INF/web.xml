@@ -69,6 +69,10 @@
             <param-name>urlFicheGroupes</param-name>
             <param-value>/WEB-INF/JSP/groupes/ficheGroupes.jsp</param-value>
         </init-param>
+        <init-param>
+            <param-name>urlCreerEtudiant</param-name>
+            <param-value>/WEB-INF/JSP/creerEtudiant.jsp</param-value>
+        </init-param>
     </servlet>
 
     <!-- Mapping URL/Servlet -->
