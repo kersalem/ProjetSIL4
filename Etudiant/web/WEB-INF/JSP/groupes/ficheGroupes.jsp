@@ -30,10 +30,10 @@
                         <td class="col-3"><%=etudiant.getNom()%></td>
                         <td class="col-3"><%=etudiant.getPrenom()%></td>
                         <td>
-                            <input class="form-control col-2" type="text" id="nbAbsences" name="absence" value="<%=etudiant.getNbAbsences()%>">
+                            <input class="form-control col-2" type="text" id="absence" name="<%=etudiant.getId()%>-absence" value="<%=etudiant.getNbAbsences()%>">
                         </td>
                         <td>
-                            <input class="form-control col-2" type="text" id="moyenne" name="moyenne" value="<%=etudiant.getMoyenneGenerale()%>">
+                            <input class="form-control col-2" type="text" id="moyenne" name="<%=etudiant.getId()%>-moyenne" value="<%=etudiant.getMoyenneGenerale()%>">
                         </td>
                     </tr>
                     <%
