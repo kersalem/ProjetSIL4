@@ -68,6 +68,8 @@ public class Controleur extends HttpServlet {
 	// POST
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
+		request.setCharacterEncoding("UTF-8");
+
 		System.out.println("DOPOST");
 		String action = request.getPathInfo();
 		if (action == null)
@@ -214,7 +216,7 @@ public class Controleur extends HttpServlet {
 	// GET
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-
+		request.setCharacterEncoding("UTF-8");
 		// On récupère le path
 		String action = request.getPathInfo();
 		if (action == null) {
