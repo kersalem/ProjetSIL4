@@ -22,7 +22,7 @@
                         for (Etudiant etudiant : notesEdition) {
                     %>
                      <tr>
-                        <td class="col-4"><%=etudiant.getPrenom() + " " + etudiant.getNom()%></td>
+                        <td class="col-4" style="vertical-align:middle;"><%=etudiant.getPrenom() + " " + etudiant.getNom()%></td>
                         <td>
                             <input class="form-control" type="number" id="MoyenneGenerale" name="<%=etudiant.getId()%>" value="<%=etudiant.getMoyenneGenerale()%>">
                         </td>
