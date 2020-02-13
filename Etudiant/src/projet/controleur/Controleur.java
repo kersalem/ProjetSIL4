@@ -97,7 +97,7 @@ public class Controleur extends HttpServlet {
 	}
 
 	// SUPPRIMER
-/*	public void doDelete(HttpServletRequest request, HttpServletResponse response)
+	/*	public void doDelete(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		System.out.println("DODELETE");
 		String action = request.getPathInfo();
@@ -242,17 +242,19 @@ public class Controleur extends HttpServlet {
 			doEnleverAbsences(request, response);
 		}else if (action.equals("/creerEtudiant")) {
 			doCreerEtudiant(request, response);
-		}else if (action.equals("/creerGroupe")) {
-			doCreerGroupes(request, response);
 		}else if (action.equals("/supprimerEtudiant")) {
 			doSupprimerEtudiant(request, response);
-		} else {
+		} /*else if (action.equals("/creerGroupe")) {
+			doCreerGroupes(request, response);
+		}else if (action.equals("/supprimerGroupe")) {
+			doSupprimerGroupe(request, response);
+		} */else {
 			// Autres cas
 			doAcceuil(request, response);
 		}
 	}
 
-	/// ACCUEIL
+	// ACCUEIL
 	private void doAcceuil(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
@@ -261,7 +263,7 @@ public class Controleur extends HttpServlet {
 		loadJSP(urlGestionTemplate, request, response);
 	}
 
-	/// LISTE ETUDIANTS
+	// LISTE ETUDIANTS
 	private void doListeEtudiants(HttpServletRequest request,
 								  HttpServletResponse response) throws ServletException, IOException {
 
@@ -275,7 +277,7 @@ public class Controleur extends HttpServlet {
 		loadJSP(urlGestionTemplate, request, response);
 	}
 
-	/// FICHE DETAILS ETUDIANT
+	// FICHE DETAILS ETUDIANT
 	private void doEtudiant(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -294,7 +296,7 @@ public class Controleur extends HttpServlet {
 		loadJSP(urlGestionTemplate, request, response);
 	}
 
-	/// AJOUTER NOUVEL ETUDIANT
+	// AJOUTER NOUVEL ETUDIANT
 	private void doCreerEtudiant(HttpServletRequest request,
 								 HttpServletResponse response) throws ServletException, IOException {
 
@@ -317,7 +319,7 @@ public class Controleur extends HttpServlet {
 		loadJSP(urlGestionTemplate, request, response);
 	}
 
-	/// SUPPRIMER UN ETUDIANT
+	// SUPPRIMER UN ETUDIANT
 	private void doSupprimerEtudiant(HttpServletRequest request,
 									 HttpServletResponse response) throws ServletException, IOException {
 		if(request.getParameter("id") != null) {
@@ -330,7 +332,7 @@ public class Controleur extends HttpServlet {
 		response.sendRedirect(request.getContextPath() + "/do/listeEtudiants");
 	}
 
-	/// LISTE NOTES
+	// LISTE NOTES
 	private void doConsultationNotes(HttpServletRequest request,
 									 HttpServletResponse response) throws ServletException, IOException {
 
@@ -344,7 +346,7 @@ public class Controleur extends HttpServlet {
 	}
 
 
-	/// EDITER NOTES
+	// EDITER NOTES
 	private void doNotesEdition(HttpServletRequest request,
 								HttpServletResponse response) throws ServletException, IOException {
 
@@ -355,7 +357,7 @@ public class Controleur extends HttpServlet {
 		loadJSP(urlGestionTemplate, request, response);
 	}
 
-	/// EDITER ABSENCES
+	// EDITER ABSENCES
 	private void doAbsencesEdition(HttpServletRequest request,
 								   HttpServletResponse response) throws ServletException, IOException {
 
@@ -368,7 +370,7 @@ public class Controleur extends HttpServlet {
 		loadJSP(urlGestionTemplate, request, response);
 	}
 
-	/// AJOUTER ABSENCE
+	// AJOUTER ABSENCE
 	private void doAddAbsences(HttpServletRequest request,
 								   HttpServletResponse response) throws ServletException, IOException {
 
@@ -384,7 +386,7 @@ public class Controleur extends HttpServlet {
 
 	}
 
-	/// ENLEVER ABSENCES
+	// ENLEVER ABSENCES
 	private void doEnleverAbsences(HttpServletRequest request,
 							   HttpServletResponse response) throws ServletException, IOException {
 
@@ -398,7 +400,7 @@ public class Controleur extends HttpServlet {
 		response.sendRedirect((request.getContextPath() + "/do/absencesEdition"));
 	}
 
-	/// LISTE ABSENCES
+	// LISTE ABSENCES
 	private void doConsultationAbsences(HttpServletRequest request,
 										HttpServletResponse response) throws ServletException, IOException {
 
@@ -411,7 +413,7 @@ public class Controleur extends HttpServlet {
 		loadJSP(urlGestionTemplate, request, response);
 	}
 
-	/// LISTE DES GROUPES
+	// LISTE DES GROUPES
 	private void doConsultationGroupes(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Collection<Groupe> listeGroupes = GroupeDAO.getAll();
@@ -422,7 +424,7 @@ public class Controleur extends HttpServlet {
 		loadJSP(urlGestionTemplate, request, response);
 	}
 
-	/// DETAILS GROUPE
+	// DETAILS GROUPE
 	private void doFicheGroupes(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -434,21 +436,33 @@ public class Controleur extends HttpServlet {
 		loadJSP(urlGestionTemplate, request, response);
 	}
 
-	/// NOUVEAU GROUPE
-	private void doCreerGroupes(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		System.out.println("**********doCreerGroupes************************");
+	// NOUVEAU GROUPE
+	/*	private void doCreerGroupes(HttpServletRequest request, HttpServletResponse response)
+				throws ServletException, IOException {
+			System.out.println("**********doCreerGroupes************************");
 
-		String nom = request.getParameter("nom");
+			String nom = request.getParameter("nom");
 
-		if (nom != null) {
-			GroupeDAO.create(nom);
-			response.sendRedirect(request.getContextPath() + "/do/consultationGroupes");
-			return;
+			if (nom != null) {
+				GroupeDAO.create(nom);
+				response.sendRedirect(request.getContextPath() + "/do/consultationGroupes");
+				return;
+			}
+			request.setAttribute("content", urlCreerGroupes);
+			loadJSP(urlGestionTemplate, request, response);
+	}*/
+
+	/*// SUPPRIMER UN GROUPE
+	private void doSupprimerGroupe(HttpServletRequest request,
+									 HttpServletResponse response) throws ServletException, IOException {
+
+		if(request.getParameter("id") != null) {
+			int idGroupe = Integer.parseInt(request.getParameter("id"));
+			GroupeDAO.remove(idGroupe);
 		}
-		request.setAttribute("content", urlCreerGroupes);
-		loadJSP(urlGestionTemplate, request, response);
-	}
+
+		response.sendRedirect(request.getContextPath() + "/do/ConsultationGroupes");
+	}*/
 
 	/**
 	 * Charge la JSP indiquée en paramètre
