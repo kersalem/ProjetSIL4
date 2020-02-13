@@ -32,7 +32,7 @@ public class Controleur extends HttpServlet {
 	private String urlConsultationNotes;
 	private String urlAbsencesEdition;
 	private String urlConsultationGroupes;
-	private String urlFicheGroupes;
+	private String urlFicheGroupe;
 	private String urlNotesEdition;
 	private String urlCreerEtudiant;
 	private String urlCreerGroupes;
@@ -51,7 +51,7 @@ public class Controleur extends HttpServlet {
 		urlNotesEdition = getServletConfig().getInitParameter("urlNotesEdition");
 		urlAbsencesEdition = getServletConfig().getInitParameter("urlAbsencesEdition");
 		urlConsultationGroupes = getServletConfig().getInitParameter("urlConsultationGroupes");
-		urlFicheGroupes = getServletConfig().getInitParameter("urlFicheGroupes");
+		urlFicheGroupe = getServletConfig().getInitParameter("urlFicheGroupe");
 		urlCreerEtudiant = getServletConfig().getInitParameter("urlCreerEtudiant");
 		urlCreerGroupes = getServletConfig().getInitParameter("urlCreerGroupes");
 		// GroupeDAO.create("SIMO");
@@ -86,8 +86,8 @@ public class Controleur extends HttpServlet {
 		} else if (action.equals("/etudiant")) { //editer etudiant
 			doModifierMoyennePost(request, response);
 
-		} else if (action.equals("/ficheGroupes")) { // editer notes et absences à partir d'un groupe
-			doFicheGroupesPost(request, response);
+		} else if (action.equals("/ficheGroupe")) { // editer notes et absences à partir d'un groupe
+			doFicheGroupePost(request, response);
 
 		}else {
 			// Autres cas
@@ -157,7 +157,7 @@ public class Controleur extends HttpServlet {
 	}
 
 
-	private void doFicheGroupesPost(HttpServletRequest request, HttpServletResponse response) {
+	private void doFicheGroupePost(HttpServletRequest request, HttpServletResponse response) {
 
 		Collection<Etudiant> etudiants = EtudiantDAO.getAll();
 
@@ -176,7 +176,7 @@ public class Controleur extends HttpServlet {
 		}
 
 		try {
-			doFicheGroupes(request, response);
+			doFicheGroupe(request, response);
 
 		} catch (ServletException e) {
 			e.printStackTrace();
@@ -234,8 +234,8 @@ public class Controleur extends HttpServlet {
 			doAbsencesEdition(request, response);
 		} else if (action.equals("/consultationGroupes")) {
 			doConsultationGroupes(request, response);
-		}else if (action.equals("/ficheGroupes")) {
-			doFicheGroupes(request, response);
+		}else if (action.equals("/ficheGroupe")) {
+			doFicheGroupe(request, response);
 		} else if (action.equals("/ajouterAbsences")) {
 			doAddAbsences(request, response);
 		}else if (action.equals("/enleverAbsences")) {
@@ -425,14 +425,14 @@ public class Controleur extends HttpServlet {
 	}
 
 	// DETAILS GROUPE
-	private void doFicheGroupes(HttpServletRequest request, HttpServletResponse response)
+	private void doFicheGroupe(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		int idGroupe = Integer.parseInt(request.getParameter("id"));
 		Groupe groupe = GroupeDAO.retrieveById(idGroupe);
 		request.setAttribute("groupe", groupe);
 
-		request.setAttribute("content", urlFicheGroupes);
+		request.setAttribute("content", urlFicheGroupe);
 		loadJSP(urlGestionTemplate, request, response);
 	}
 

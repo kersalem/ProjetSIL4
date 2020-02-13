@@ -33,7 +33,7 @@
 						%>
 							<tr>
 								<td><a class="nav-item nav-link text-white" href="<%= application.getContextPath()%>/do/etudiant?id=<%=etudiant.getId()%>"><%=etudiant.getPrenom()%> <%=etudiant.getNom()%></a></td>
-								<td><a class="nav-item nav-link text-white" href="<%= application.getContextPath()%>/do/ficheGroupes?id=<%=etudiant.getGroupe().getId()%>"><%=etudiant.getGroupe().getNom()%></a></td>
+								<td><a class="nav-item nav-link text-white" href="<%= application.getContextPath()%>/do/ficheGroupe?id=<%=etudiant.getGroupe().getId()%>"><%=etudiant.getGroupe().getNom()%></a></td>
 								<td><button type="submit" name="id" value="<%=etudiant.getId()%>" class="btn btn-primary"> X </button></td>
 							</tr>
 						<%

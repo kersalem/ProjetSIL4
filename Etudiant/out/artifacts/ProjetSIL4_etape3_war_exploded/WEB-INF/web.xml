@@ -66,8 +66,8 @@
             <param-value>/WEB-INF/JSP/groupes/consultationGroupes.jsp</param-value>
         </init-param>
         <init-param>
-            <param-name>urlFicheGroupes</param-name>
-            <param-value>/WEB-INF/JSP/groupes/ficheGroupes.jsp</param-value>
+            <param-name>urlFicheGroupe</param-name>
+            <param-value>/WEB-INF/JSP/groupes/ficheGroupe.jsp</param-value>
         </init-param>
         <init-param>
             <param-name>urlCreerEtudiant</param-name>
